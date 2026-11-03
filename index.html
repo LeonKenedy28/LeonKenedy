@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Школьная вселенная</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f1eeff;--card:#fff;--ink:#1d1a33;--mut:#5b5780;--dot:#d6d0f5;--c:#ff6b6b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17142b;--card:#242042;--ink:#f4f1ff;--mut:#b4afe0;--dot:#2c2850}}
+:root[data-theme="dark"]{--bg:#17142b;--card:#242042;--ink:#f4f1ff;--mut:#b4afe0;--dot:#2c2850}
+*{box-sizing:inherit}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg) radial-gradient(var(--dot) 1.5px,transparent 1.5px) 0 0/24px 24px;color:var(--ink);font:500 17px/1.6 Nunito,system-ui,sans-serif}
+h1,h2,h3{font-family:Unbounded,Nunito,system-ui,sans-serif;line-height:1.15;margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:3px solid var(--ink)}
+nav .wrap{display:flex;gap:14px;align-items:center;justify-content:space-between;padding-top:10px;padding-bottom:10px}
+nav a{color:var(--ink);font-weight:800;text-decoration:none;margin-right:14px}
+.btn{font:800 16px Nunito,sans-serif;color:#1d1a33;background:#ffd23f;border:3px solid var(--ink);border-radius:14px;padding:8px 16px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--ink)}.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+:focus-visible{outline:4px solid #4d96ff;outline-offset:2px}
+.hero{padding:44px 0 26px}
+.hero h1{font-size:clamp(34px,7vw,68px);font-weight:800}
+.hero h1 span{display:inline-block;padding:0 .18em;border:3px solid var(--ink);border-radius:16px;color:#1d1a33;box-shadow:5px 5px 0 var(--ink)}
+.hero p{max-width:560px;color:var(--mut);font-size:19px}
+.float{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.float b{font-size:34px;border:3px solid var(--ink);border-radius:50%;width:62px;height:62px;display:grid;place-items:center;background:var(--card);box-shadow:3px 3px 0 var(--ink);animation:bob 2.4s ease-in-out infinite}
+.float b:nth-child(2n){animation-delay:-.8s}.float b:nth-child(3n){animation-delay:-1.5s}
+@keyframes bob{50%{transform:translateY(-9px) rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){.float b{animation:none}html{scroll-behavior:auto}}
+section{padding:34px 0}
+h2{font-size:clamp(24px,4vw,36px);margin-bottom:18px}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.tab{font:800 16px Nunito,sans-serif;color:#1d1a33;background:var(--c);border:3px solid var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);opacity:.72}
+.tab[aria-selected=true]{opacity:1;transform:translateY(-3px);box-shadow:3px 6px 0 var(--ink)}
+.panel{background:var(--card);border:3px solid var(--ink);border-radius:24px;box-shadow:8px 8px 0 var(--c);display:grid;grid-template-columns:1fr 1.25fr;overflow:hidden}
+.pl{background:var(--c);color:#1d1a33;padding:26px;border-right:3px solid var(--ink)}
+.pl .em{font-size:84px;line-height:1}.pl h3{font-size:28px;margin:10px 0}
+.pl ul{padding-left:20px;margin:10px 0 0}
+.pr{padding:26px}.pr h4{font:800 18px Unbounded,sans-serif;margin:18px 0 6px}.pr h4:first-child{margin-top:0}
+.fact{background:var(--dot);border-radius:14px;padding:10px 14px;margin:8px 0;font-weight:700}
+@media(max-width:760px){.panel{grid-template-columns:1fr}.pl{border-right:0;border-bottom:3px solid var(--ink)}}
+.game{background:var(--card);border:3px solid var(--ink);border-radius:24px;padding:22px;box-shadow:8px 8px 0 var(--ink);min-height:360px}
+.stat{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.pill{background:var(--dot);border:3px solid var(--ink);border-radius:999px;padding:2px 14px;font-weight:800}
+.big{font:800 clamp(30px,6vw,52px) Unbounded,sans-serif;text-align:center;margin:18px 0}
+input{font:800 24px Nunito,sans-serif;width:100%;max-width:320px;padding:10px 14px;border:3px solid var(--ink);border-radius:14px;background:var(--bg);color:var(--ink);text-align:center}
+.center{text-align:center}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:560px){.opts{grid-template-columns:1fr}}
+.opt{font:800 17px Nunito,sans-serif;text-align:left;padding:12px 14px;background:var(--bg);color:var(--ink);border:3px solid var(--ink);border-radius:14px;cursor:pointer}
+.opt.ok{background:#2ecc71;color:#1d1a33}.opt.no{background:#ff6b6b;color:#1d1a33}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:520px;margin:0 auto}
+.card{aspect-ratio:1;border:3px solid var(--ink);border-radius:16px;font:800 15px Nunito,sans-serif;cursor:pointer;background:repeating-linear-gradient(45deg,#4d96ff,#4d96ff 8px,#7ab0ff 8px,#7ab0ff 16px);color:transparent;display:grid;place-items:center;padding:4px;transition:transform .25s}
+.card.up{background:var(--card);color:var(--ink);transform:rotateY(0)}.card.up.e{font-size:34px}
+.card.done{background:#2ecc71;color:#1d1a33}
+.msg{min-height:28px;text-align:center;font-weight:800;margin-top:10px}
+footer{padding:30px 0 50px;text-align:center;color:var(--mut)}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><div><a href="#subjects">Предметы</a><a href="#games">Игры</a></div><button class="btn" id="snd" aria-pressed="true">🔊 Звук: вкл</button></div></nav>
+
+<header class="wrap hero">
+<h1>Школьная <span style="background:#ffd23f">вселен</span><span style="background:#ff6b6b;transform:rotate(-3deg)">ная</span></h1>
+<p>Восемь предметов, десятки фактов и четыре игры, в которых можно проверить, чему ты уже научился.</p>
+<div class="float" aria-hidden="true"><b>📐</b><b>🧪</b><b>🌍</b><b>🔭</b><b>📜</b><b>💻</b><b>🧬</b><b>✍️</b></div>
+</header>
+
+<main class="wrap">
+<section id="subjects"><h2>Выбери предмет</h2><div class="tabs" role="tablist" id="tabs"></div><div class="panel" id="panel" role="tabpanel"></div></section>
+
+<section id="games"><h2>Мини-игры</h2>
+<div class="tabs" id="gtabs"></div>
+<div class="game" id="game"></div></section>
+</main>
+<footer>Сделано для любознательных 🎒 Учись с удовольствием!</footer>
+
+<script>
+const $=s=>document.querySelector(s);
+const rnd=n=>Math.floor(Math.random()*n);
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+
+/* ---------- Звук (WebAudio) ---------- */
+let AC=null,soundOn=true;
+function tone(f,d=.12,type='sine',v=.15,t0=0){if(!soundOn)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();const o=AC.createOscillator(),g=AC.createGain(),t=AC.currentTime+t0;o.type=type;o.frequency.value=f;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+d)}catch(e){}}
+const sfx={
+ click:()=>tone(520,.07,'square',.08),
+ flip:()=>tone(700,.08,'triangle',.12),
+ ok:()=>{tone(660,.1,'triangle');tone(880,.16,'triangle',.15,.09)},
+ bad:()=>{tone(200,.2,'sawtooth',.1);tone(150,.25,'sawtooth',.1,.12)},
+ tick:()=>tone(1000,.03,'square',.05),
+ win:()=>[523,659,784,1046].forEach((f,i)=>tone(f,.2,'triangle',.15,i*.1))
+};
+$('#snd').onclick=e=>{soundOn=!soundOn;e.target.textContent=soundOn?'🔊 Звук: вкл':'🔇 Звук: выкл';e.target.setAttribute('aria-pressed',soundOn);sfx.click()};
+
+/* ---------- Предметы ---------- */
+const S=[
+{n:'Математика',e:'📐',c:'#ff6b6b',t:'Язык, на котором написана вся наука.',
+ p:['Математика учит рассуждать строго и находить закономерности. С её помощью строят мосты, считают траектории ракет и защищают банковские карты.','В школе ты пройдёшь путь от счёта и дробей до алгебры, геометрии, вероятности и начал анализа.'],
+ l:['Арифметика и дроби','Уравнения и функции','Геометрия и тригонометрия','Вероятность и статистика'],
+ f:['Ноль придумали в Индии, а в Европе он прижился лишь к XIII веку.','Число π бесконечно, и в нём нет повторяющегося периода.','Сумма углов любого треугольника на плоскости равна 180°.']},
+{n:'Русский язык',e:'✍️',c:'#ffb300',t:'Умение точно сказать то, что думаешь.',
+ p:['Русский язык объясняет, как устроены слова и предложения. Правила орфографии и пунктуации нужны, чтобы тебя понимали без ошибок.','Он развивает речь и память, а ещё помогает читать сложные книги и убедительно писать.'],
+ l:['Фонетика и орфография','Морфология: части речи','Синтаксис и пунктуация','Развитие речи и сочинения'],
+ f:['В русском алфавите 33 буквы, а звуков больше 40.','Букву «ё» официально ввели в 1783 году по предложению княгини Дашковой.','Самое длинное слово в словарях насчитывает больше 30 букв.']},
+{n:'Физика',e:'🔭',c:'#4d96ff',t:'Почему всё движется, светит и падает.',
+ p:['Физика изучает законы природы: движение, силы, тепло, свет, электричество. Её открытия дали нам лампочки, телефоны и спутники.','Главный метод: наблюдать, придумывать гипотезу и проверять её опытом.'],
+ l:['Механика и законы Ньютона','Тепловые явления','Электричество и магнетизм','Оптика и атомная физика'],
+ f:['Свет Солнца добирается до Земли примерно за 8 минут.','В вакууме перо и молоток падают с одинаковой скоростью.','Молния нагревает воздух сильнее, чем поверхность Солнца.']},
+{n:'Химия',e:'🧪',c:'#2ecc71',t:'Из чего всё сделано и как это меняется.',
+ p:['Химия изучает вещества и их превращения. От приготовления хлеба до производства лекарств везде идут химические реакции.','В таблице Менделеева собраны все известные элементы, и по ней можно предсказывать свойства веществ.'],
+ l:['Атомы и таблица Менделеева','Типы химических реакций','Кислоты, основания, соли','Органическая химия'],
+ f:['Вода состоит из водорода и кислорода: H₂O.','Менделеев оставил в таблице пустые клетки для ещё не открытых элементов.','Алмаз и графит сделаны из одного элемента: углерода.']},
+{n:'Биология',e:'🧬',c:'#b46bff',t:'Наука о жизни: от клетки до целой планеты.',
+ p:['Биология рассказывает, как устроены растения, животные, грибы и люди. Она объясняет, как мы дышим, растём и наследуем черты родителей.','Экология учит беречь природу, а генетика помогает лечить болезни.'],
+ l:['Клетка и её органоиды','Ботаника и зоология','Анатомия человека','Генетика и экология'],
+ f:['В теле взрослого человека около 37 триллионов клеток.','Сердце сокращается более 100 тысяч раз в сутки.','Деревья общаются через сеть грибных нитей в почве.']},
+{n:'География',e:'🌍',c:'#00bfa5',t:'Планета, на которой мы живём.',
+ p:['География изучает природу Земли, страны и народы. Карты, климат, рельеф и население помогают понять, почему мир выглядит так, как выглядит.','Это предмет для путешественников: он учит ориентироваться и видеть связи между явлениями.'],
+ l:['Карта и ориентирование','Литосфера, атмосфера, гидросфера','Материки и океаны','Страны и экономика'],
+ f:['Россия занимает более 17 миллионов квадратных километров.','Байкал хранит около пятой части мировых запасов пресной воды.','Самая высокая гора мира — Джомолунгма, около 8849 метров.']},
+{n:'История',e:'📜',c:'#ff8a3d',t:'Уроки прошлого для будущего.',
+ p:['История рассказывает, как жили люди, почему возникали государства и что приводило к переменам. Она опирается на документы, находки археологов и память поколений.','Зная прошлое, легче понимать настоящее и не повторять старые ошибки.'],
+ l:['Древний мир и Египет','Средние века','Новое время и революции','История России и XX век'],
+ f:['Первые Олимпийские игры прошли в Греции в 776 году до н. э.','Великую Китайскую стену строили около двух тысяч лет.','Письменность появилась в Месопотамии более 5000 лет назад.']},
+{n:'Информатика',e:'💻',c:'#ff5fa2',t:'Как думают и работают компьютеры.',
+ p:['Информатика учит работать с данными и писать программы. Алгоритм — это чёткая инструкция, и по ней действует любое приложение.','Ты узнаешь, как хранится информация, как устроены сети и как безопасно пользоваться интернетом.'],
+ l:['Двоичная система счисления','Алгоритмы и блок-схемы','Программирование','Сети и безопасность'],
+ f:['Компьютер хранит всё в нулях и единицах.','Первым программистом считают Аду Лавлейс, жившую в XIX веке.','Один байт состоит из 8 бит.']}
+];
+const tabs=$('#tabs');
+S.forEach((s,i)=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.style.setProperty('--c',s.c);b.textContent=s.e+' '+s.n;b.onclick=()=>show(i);tabs.appendChild(b)});
+function show(i,quiet){const s=S[i];if(!quiet)sfx.click();[...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',i===j));const p=$('#panel');p.style.setProperty('--c',s.c);
+ p.innerHTML=`<div class="pl"><div class="em">${s.e}</div><h3>${s.n}</h3><p><b>${s.t}</b></p><b>Что изучают:</b><ul>${s.l.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="pr"><h4>О предмете</h4>${s.p.map(x=>`<p>${x}</p>`).join('')}<h4>Интересные факты</h4>${s.f.map(x=>`<div class="fact">💡 ${x}</div>`).join('')}</div>`}
+show(0,true);
+
+/* ---------- Игры ---------- */
+const G=$('#game'),gt=$('#gtabs');let timer=null;
+const games=[{n:'⚡ Быстрый счёт',f:mathGame,c:'#ff6b6b'},{n:'🧠 Викторина',f:quiz,c:'#4d96ff'},{n:'🃏 Пары',f:memory,c:'#2ecc71'},{n:'🔤 Анаграммы',f:anagram,c:'#b46bff'}];
+games.forEach((g,i)=>{const b=document.createElement('button');b.className='tab';b.style.setProperty('--c',g.c);b.textContent=g.n;b.onclick=()=>pick(i);gt.appendChild(b)});
+function pick(i,q){clearInterval(timer);if(!q)sfx.click();[...gt.children].forEach((b,j)=>b.setAttribute('aria-selected',i===j));games[i].f()}
+pick(0,true);
+
+/* 1. Быстрый счёт */
+function mathGame(){let best=+(window._best||0);
+ G.innerHTML=`<div class="center"><h3>Быстрый счёт</h3><p>У тебя 30 секунд. Решай примеры и нажимай Enter.</p><button class="btn" id="go">Старт!</button><p>Рекорд: ${best}</p></div>`;
+ $('#go').onclick=()=>{sfx.click();let score=0,left=30,ans=0;
+  G.innerHTML=`<div class="stat"><span class="pill" id="tm">⏱ 30</span><span class="pill" id="sc">Очки: 0</span></div><div class="big" id="q"></div><div class="center"><input id="a" type="number" inputmode="numeric" autocomplete="off" aria-label="Ответ"></div><div class="msg" id="m"></div>`;
+  const next=()=>{const lv=Math.min(2,Math.floor(score/5)),op=['+','−','×'][rnd(lv?3:2)];let a,b;
+   if(op==='×'){a=2+rnd(9+lv*3);b=2+rnd(9);ans=a*b}else{a=5+rnd(20+lv*40);b=5+rnd(20+lv*40);if(op==='−'&&b>a)[a,b]=[b,a];ans=op==='+'?a+b:a-b}
+   $('#q').textContent=`${a} ${op} ${b} = ?`;$('#a').value='';$('#a').focus()};
+  $('#a').onkeydown=e=>{if(e.key!=='Enter'||$('#a').value==='')return;if(+$('#a').value===ans){score++;sfx.ok();$('#m').textContent='Верно! 🎉'}else{sfx.bad();$('#m').textContent='Было '+ans}$('#sc').textContent='Очки: '+score;next()};
+  next();
+  timer=setInterval(()=>{left--;$('#tm').textContent='⏱ '+left;if(left<=5&&left>0)sfx.tick();
+   if(left<=0){clearInterval(timer);const nb=score>(window._best||0);if(nb)window._best=score;sfx.win();
+    G.innerHTML=`<div class="center"><div class="big">${score} ${nb?'🏆':'⭐'}</div><p>${nb?'Новый рекорд!':'Хороший результат!'}</p><button class="btn" id="again">Ещё раз</button></div>`;$('#again').onclick=mathGame}},1000)}}
+
+/* 2. Викторина */
+const Q=[
+['Сколько градусов в сумме углов треугольника?','180°',['90°','360°','270°']],
+['Чему равно 7 × 8?','56',['54','48','63']],
+['Какая часть речи отвечает на вопрос «что делать?»','Глагол',['Существительное','Прилагательное','Наречие']],
+['Сколько букв в русском алфавите?','33',['32','31','35']],
+['Как называется единица силы?','Ньютон',['Джоуль','Ватт','Паскаль']],
+['Чему равна скорость света, примерно?','300 000 км/с',['3 000 км/с','30 000 км/с','3 млн км/с']],
+['Какой химический символ у золота?','Au',['Ag','Go','Fe']],
+['Какой газ мы вдыхаем для дыхания?','Кислород',['Азот','Гелий','Углекислый газ']],
+['Какой орган качает кровь?','Сердце',['Печень','Лёгкие','Почки']],
+['Самый большой океан Земли?','Тихий',['Атлантический','Индийский','Северный Ледовитый']],
+['Столица Узбекистана?','Ташкент',['Самарканд','Бухара','Нукус']],
+['Кто создал таблицу химических элементов?','Менделеев',['Ломоносов','Эйнштейн','Кюри']],
+['Сколько бит в одном байте?','8',['4','16','10']],
+['В каком веке появился первый печатный станок Гутенберга?','XV',['X','XVIII','XII']]];
+function quiz(){const qs=shuffle(Q).slice(0,8);let i=0,sc=0,st=0;
+ const r=()=>{if(i>=qs.length){sfx.win();G.innerHTML=`<div class="center"><div class="big">${sc} из ${qs.length} ${sc>=6?'🏆':'👍'}</div><button class="btn" id="again">Играть снова</button></div>`;$('#again').onclick=quiz;return}
+  const [q,ok,bad]=qs[i];G.innerHTML=`<div class="stat"><span class="pill">Вопрос ${i+1}/${qs.length}</span><span class="pill">Очки: ${sc}</span><span class="pill">🔥 Серия: ${st}</span></div><h3 style="margin-bottom:18px">${q}</h3><div class="opts"></div><div class="msg" id="m"></div>`;
+  shuffle([ok,...bad]).forEach(o=>{const b=document.createElement('button');b.className='opt';b.textContent=o;b.onclick=()=>{[...G.querySelectorAll('.opt')].forEach(x=>{x.disabled=true;if(x.textContent===ok)x.classList.add('ok')});
+   if(o===ok){sc++;st++;sfx.ok();$('#m').textContent='Правильно! 🎉'}else{st=0;b.classList.add('no');sfx.bad();$('#m').textContent='Правильный ответ: '+ok}
+   setTimeout(()=>{i++;r()},1300)};G.querySelector('.opts').appendChild(b)})};r()}
+
+/* 3. Пары */
+const P=[['H₂O','🧪'],['Пифагор','📐'],['Ньютон','🔭'],['Клетка','🧬'],['Материк','🌍'],['Пирамиды','📜'],['Алгоритм','💻'],['Глагол','✍️']];
+function memory(){const cards=shuffle(P.flatMap(([a,b],k)=>[{k,v:a},{k,v:b,e:1}]));let open=[],moves=0,found=0,lock=false;
+ G.innerHTML=`<div class="stat"><span class="pill" id="mv">Ходы: 0</span><span class="pill">Найди термин и его предмет</span></div><div class="grid" id="g"></div><div class="msg" id="m"></div>`;
+ cards.forEach(c=>{const b=document.createElement('button');b.className='card';b.setAttribute('aria-label','Карточка');
+  b.onclick=()=>{if(lock||b.classList.contains('up')||b.classList.contains('done'))return;sfx.flip();b.classList.add('up');if(c.e)b.classList.add('e');b.textContent=c.v;open.push([b,c]);
+   if(open.length===2){moves++;$('#mv').textContent='Ходы: '+moves;const [[b1,c1],[b2,c2]]=open;open=[];
+    if(c1.k===c2.k){sfx.ok();[b1,b2].forEach(x=>x.classList.add('done'));if(++found===P.length){setTimeout(sfx.win,300);$('#m').innerHTML='Все пары найдены за '+moves+' ходов! 🏆 <button class="btn" id="again">Заново</button>';$('#again').onclick=memory}}
+    else{lock=true;sfx.bad();setTimeout(()=>{[b1,b2].forEach(x=>{x.classList.remove('up','e');x.textContent=''});lock=false},850)}}};
+  $('#g').appendChild(b)})}
+
+/* 4. Анаграммы */
+const A=[['ТРЕУГОЛЬНИК','Фигура с тремя углами'],['ЭЛЕКТРОН','Частица с отрицательным зарядом'],['ГЕОГРАФИЯ','Наука о Земле'],['АЛГОРИТМ','Чёткая инструкция для компьютера'],['КИСЛОРОД','Газ, которым мы дышим'],['МАТЕМАТИКА','Царица наук'],['ПЛАНЕТА','Земля, Марс, Венера…'],['КЛЕТКА','Основа всего живого'],['ГЛАГОЛ','Часть речи: что делать?'],['ВУЛКАН','Гора, которая извергается'],['ДРОБЬ','Числитель и знаменатель'],['ПИРАМИДА','Гробница фараона']];
+function anagram(){const w=shuffle(A);let i=0,sc=0;
+ const r=()=>{if(i>=w.length){sfx.win();G.innerHTML=`<div class="center"><div class="big">Слов: ${sc} из ${w.length} 🏆</div><button class="btn" id="again">Ещё раз</button></div>`;$('#again').onclick=anagram;return}
+  const [word,h]=w[i];let sc2;do{sc2=shuffle(word.split('')).join('')}while(sc2===word);
+  G.innerHTML=`<div class="stat"><span class="pill">Слово ${i+1}/${w.length}</span><span class="pill">Очки: ${sc}</span></div><div class="big" style="letter-spacing:.12em;word-break:break-all">${sc2}</div><p class="center">Подсказка: ${h}</p><div class="center"><input id="a" autocomplete="off" aria-label="Ответ"></div><div class="center" style="margin-top:14px"><button class="btn" id="ck">Проверить</button> <button class="btn" id="sk" style="background:var(--card);color:var(--ink)">Пропустить</button></div><div class="msg" id="m"></div>`;
+  const chk=()=>{if($('#a').value.trim().toUpperCase().replace(/Ё/g,'Е')===word.replace(/Ё/g,'Е')){sc++;sfx.ok();$('#m').textContent='Верно! 🎉';setTimeout(()=>{i++;r()},900)}else{sfx.bad();$('#m').textContent='Не то, попробуй ещё'}};
+  $('#ck').onclick=chk;$('#a').onkeydown=e=>{if(e.key==='Enter')chk()};$('#sk').onclick=()=>{sfx.click();$('#m').textContent='Ответ: '+word;setTimeout(()=>{i++;r()},1200)};$('#a').focus()};r()}
+</script>
+</body>
+</html>
